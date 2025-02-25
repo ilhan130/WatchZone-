@@ -42,22 +42,39 @@
             color: #ddd;
         }
 
-        /* Fullscreen Button */
-        .fullscreen-btn {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: red;
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px auto;
+            max-width: 800px;
             padding: 10px;
+        }
+
+        .btn {
+            padding: 10px 15px;
             font-size: 16px;
-            border-radius: 50%;
+            border-radius: 5px;
             cursor: pointer;
             color: white;
             border: none;
         }
-        
+
+        .fullscreen-btn {
+            background: red;
+            border-radius: 50%;
+        }
+
         .fullscreen-btn:hover {
             background: darkred;
+        }
+
+        .back-btn {
+            background: red;
+        }
+
+        .back-btn:hover {
+            background: black;
         }
     </style>
 </head>
@@ -65,8 +82,12 @@
 
     <div id="videoContainer">
         <iframe id="moviePlayer" src="https://drive.google.com/file/d/1n3YHEg10dIQlacO7goZuab8LEbVL3Yog/preview" allow="autoplay" allowfullscreen></iframe>
+    </div>
 
-        <button class="fullscreen-btn" onclick="toggleFullScreen()">⛶</button>
+    <!-- Buttons -->
+    <div class="btn-container">
+        <button class="btn back-btn" onclick="goBack()">⬅ Back</button>
+        <button class="btn fullscreen-btn" onclick="toggleFullScreen()">⛶</button>
     </div>
 
     <!-- Movie Description Section -->
@@ -95,7 +116,12 @@
                 });
             }
         }
+
+        // Go Back to Index Page
+        function goBack() {
+            window.location.href = "index.html";
+        }
     </script>
 
 </body>
-</html>
+            </html>
