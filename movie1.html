@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Movie Player</title>
+    <style>
+        /* General Styling */
+        body { background-color: #ff1f00; text-align: center; margin: 0; padding: 0; font-family: Arial, sans-serif; color: white; }
+        #videoContainer { position: relative; width: 100%; max-width: 800px; margin: auto; }
+
+        /* Customizable Video Player */
+        iframe {
+            width: 99%;
+            height: 200px; /* Adjust height here */
+            border-radius: 10px;
+            outline: none;
+            background: #000;
+            display: block;
+        }
+
+        /* Movie Details */
+        .movie-details {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .movie-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .movie-description {
+            font-size: 16px;
+            margin-top: 5px;
+            color: #ddd;
+        }
+
+        /* Fullscreen Button */
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: red;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+            border: none;
+        }
+        
+        .fullscreen-btn:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="videoContainer">
+        <iframe id="moviePlayer" src="https://drive.google.com/file/d/1n3YHEg10dIQlacO7goZuab8LEbVL3Yog/preview" allow="autoplay" allowfullscreen></iframe>
+
+        <button class="fullscreen-btn" onclick="toggleFullScreen()">⛶</button>
+    </div>
+
+    <!-- Movie Description Section -->
+    <div class="movie-details">
+        <div class="movie-title">Movie Title: Inception</div>
+        <div class="movie-description">
+            A thief who enters the dreams of others to steal secrets is given a chance to erase his criminal past.
+            <br><br>
+            <strong>Release Year:</strong> 2010
+        </div>
+    </div>
+
+    <script>
+        var iframe = document.getElementById("moviePlayer");
+
+        // Fullscreen Mode + Auto Landscape
+        function toggleFullScreen() {
+            if (iframe.requestFullscreen) { iframe.requestFullscreen(); }
+            else if (iframe.webkitRequestFullscreen) { iframe.webkitRequestFullscreen(); }
+            else if (iframe.msRequestFullscreen) { iframe.msRequestFullscreen(); }
+
+            // Auto Rotate to Landscape Mode
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock("landscape").catch(error => {
+                    console.log("Rotation not supported:", error);
+                });
+            }
+        }
+    </script>
+
+</body>
+</html>
