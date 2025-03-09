@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Movie Player</title>
+    <style>
+        /* General Styling */
+        body { background-color: #ff1f00; text-align: center; margin: 0; padding: 0; font-family: Arial, sans-serif; color: white; }
+        #videoContainer { position: relative; width: 100%; max-width: 800px; margin: auto; }
+
+        /* Customizable Video Player */
+        iframe {
+            width: 99%;
+            height: 200px; /* Adjust height here */
+            border-radius: 10px;
+            outline: none;
+            background: #000;
+            display: block;
+        }
+
+        /* Movie Details */
+        .movie-details {
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .movie-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .movie-description {
+            font-size: 16px;
+            margin-top: 5px;
+            color: #ddd;
+        }
+
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 10px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            border: none;
+        }
+
+        .fullscreen-btn {
+            background: red;
+            border-radius: 50%;
+        }
+
+        .fullscreen-btn:hover {
+            background: darkred;
+        }
+
+        .back-btn {
+            background: red;
+        }
+
+        .back-btn:hover {
+            background: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="videoContainer">
+        <iframe id="moviePlayer" src="https://drive.google.com/file/d/1v58rA-xrXCsiPqVf1abZ9JEwhoa_fWP4/preview" allow="autoplay" allowfullscreen></iframe>
+    </div>
+
+    <!-- Buttons -->
+    <div class="btn-container">
+        <button class="btn back-btn" onclick="goBack()">⬅ Back</button>
+        <button class="btn fullscreen-btn" onclick="toggleFullScreen()">⛶</button>
+    </div>
+
+    <!-- Movie Description Section -->
+    <div class="movie-details">
+        <div class="movie-title">Movie Title: Kanakarajyam</div>
+        <div class="movie-description">
+            Kanakarajyam is a 2024 Indian Malayalam-language family-drama film written and directed by Sagar Hari. [1]It stars Indrans, Murali Gopy and Leona Lishoy. It was produced by Wichu Ajith Vinayaka under the banner of Ajith Vinayaka Films Pvt Ltd and the music was composed by Arun Muraleedharan.[2] It was released on 05 July 2024.[3]
+              <br><br>
+            <strong>Release Year:</strong> 2024
+        </div>
+    </div>
+
+    <script>
+        var iframe = document.getElementById("moviePlayer");
+
+        // Fullscreen Mode + Auto Landscape
+        function toggleFullScreen() {
+            if (iframe.requestFullscreen) { iframe.requestFullscreen(); }
+            else if (iframe.webkitRequestFullscreen) { iframe.webkitRequestFullscreen(); }
+            else if (iframe.msRequestFullscreen) { iframe.msRequestFullscreen(); }
+
+            // Auto Rotate to Landscape Mode
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock("landscape").catch(error => {
+                    console.log("Rotation not supported:", error);
+                });
+            }
+        }
+
+        // Go Back to Index Page
+        function goBack() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>
